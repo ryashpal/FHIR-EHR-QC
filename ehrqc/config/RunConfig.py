@@ -57,18 +57,20 @@ run_config_omop_to_fhir = [
     #     'type': 'execute',
     #     'function': createLocationLookup
     # },
-    # {
-    #     'entity': 'Patient',
-    #     'type': 'migrate',
-    #     'sqlFilePath': 'ehrqc/templates/sql/select/Person.sql',
-    #     'jsonTemplatePath': 'ehrqc/templates/fhir/Patient.json',
-    #     'json_sql_mapping': {
-    #         'id': 'id',
-    #         'gender': 'gender',
-    #     },
-    #     'save': True,
-    #     'savePath': 'data/omop_to_fhir/patient',
-    # },
+    {
+        'entity': 'Patient',
+        'type': 'migrate',
+        'sqlFilePath': 'ehrqc/templates/sql/select/Person.sql',
+        'jsonTemplatePath': 'ehrqc/templates/fhir/Patient.json',
+        'json_sql_mapping': {
+            'id': 'id',
+            'gender': 'gender',
+            'name||given': 'first_name',
+            'name||family': 'last_name',
+        },
+        'save': True,
+        'savePath': 'data/omop_to_fhir/patient',
+    },
     # {
     #     'entity': 'Encounter',
     #     'type': 'migrate',
@@ -94,6 +96,23 @@ run_config_omop_to_fhir = [
     #     'savePath': 'data/omop_to_fhir/encounter',
     # },
     # {
+    #     'entity': 'Procedure',
+    #     'type': 'migrate',
+    #     'sqlFilePath': 'ehrqc/templates/sql/select/ProcedureOccurrence.sql',
+    #     'jsonTemplatePath': 'ehrqc/templates/fhir/Procedure.json',
+    #     'json_sql_mapping': {
+    #         'id': 'id',
+    #         'code||coding||code': 'concept_code',
+    #         'code||coding||display': 'concept_name',
+    #         'code||text': 'concept_name',
+    #         'subject||reference': 'person_id',
+    #         'encounter||reference': 'visit_occurrence_id',
+    #         'performedDateTime': 'procedure_datetime',
+    #     },
+    #     'save': True,
+    #     'savePath': 'data/omop_to_fhir/encounter',
+    # },
+    # {
     #     'entity': 'Observation',
     #     'type': 'migrate',
     #     'sqlFilePath': 'ehrqc/templates/sql/select/Measurement.sql',
@@ -109,7 +128,25 @@ run_config_omop_to_fhir = [
     #         'valueQuantity||value': 'value_as_number',
     #         'valueQuantity||unit': 'unit_concept_id',
     #         'valueQuantity||code': 'unit_concept_code',
-    #     }
+    #     },
+    #     'save': True,
+    #     'savePath': 'data/omop_to_fhir/observation',
+    # },
+    # {
+    #     'entity': 'DiagnosticReport',
+    #     'type': 'migrate',
+    #     'sqlFilePath': 'ehrqc/templates/sql/select/ConditionOccurrence.sql',
+    #     'jsonTemplatePath': 'ehrqc/templates/fhir/DiagnosticReport.json',
+    #     'json_sql_mapping': {
+    #         'id': 'id',
+    #         'conclusionCode||coding||code': 'concept_id',
+    #         'conclusionCode||coding||display': 'concept_name',
+    #         'subject||reference': 'person_id',
+    #         'encounter||reference': 'visit_occurrence_id',
+    #         'issued': 'condition_start_datetime',
+    #     },
+    #     'save': True,
+    #     'savePath': 'data/omop_to_fhir/diagnostic_report',
     # },
 ]
 

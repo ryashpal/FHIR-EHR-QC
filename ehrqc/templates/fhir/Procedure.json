@@ -1,0 +1,21 @@
+{
+    "resourceType": "Procedure",
+    "id": "{{ id }}",
+    "performedDateTime": "{{ procedure_datetime }}",
+    "status": "completed",
+    "code": {
+        "coding": {
+            "system": "http://snomed.info/sct",
+            "code": "{{ concept_code }}",
+            "display": "{{ concept_name }}"
+        }
+        ,
+        "text": "{{ concept_name }}"
+    },
+    "subject": {
+        "reference": "Patient/{{ patient_id }}"
+    },
+    "encounter": {
+        "reference": "Encounter/{{ encounter_id }}"
+    }
+}

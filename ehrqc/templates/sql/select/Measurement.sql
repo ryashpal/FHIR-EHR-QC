@@ -10,15 +10,25 @@ uni_con.concept_code as unit_concept_code,
 mmt.value_as_number as value_as_number
 from
 omop_test_20220817.measurement mmt
+inner join omop_test_20220817.data_matrix dm
+on dm.person_id = mmt.person_id
 inner join omop_test_20220817.concept mmt_con
 on mmt_con.concept_id = mmt.measurement_concept_id
-inner join omop_test_20220817.micro_cohort coh
-on coh.visit_occurrence_id = mmt.visit_occurrence_id
 inner join omop_test_20220817.concept uni_con
 on uni_con.concept_id = mmt.unit_concept_id
-where  mmt.measurement_source_value IN
+where
+mmt.measurement_source_value IN
     (
     '220045' -- heartrate
+    , '220050', '220179' -- sysbp
+    , '220051', '220180' -- diasbp
+    , '220052', '220181', '225312' -- meanbp
+    , '220739' -- gcseye
+    , '223900' -- gcsverbal
+    , '223901' -- gscmotor
     )
+and 
+(mmt.measurement_datetime between (dm.anchor_time::timestamp - interval '6 hour') and (dm.anchor_time::timestamp + interval '6 hour'))
 and value_as_number <> 'NaN'
 and value_as_number is not null
+;

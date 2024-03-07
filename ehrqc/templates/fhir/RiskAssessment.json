@@ -1,0 +1,20 @@
+{
+    "resourceType" : "RiskAssessment",
+    "status" : "final",
+    "subject" : {
+      "reference" : ""
+    },
+    "occurrenceDateTime" : "",
+    "basis" : {
+        "reference" : "prognosis"
+      },
+    "prediction" : {
+        "outcome" : {
+            "text" : ""
+        },
+        "probabilityDecimal" : ""
+    },
+    "note" : {
+        "text" : ""
+    }
+}
