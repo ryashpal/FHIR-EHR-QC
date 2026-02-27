@@ -79,3 +79,9 @@ We acknowledge the following individuals and organizations for their support:
 **Open Source**: The developers of Gosling, React, and Material UI, which were instrumental in the development of the framework.
 
 **Resources**: The ARDC Nectar Research Cloud for providing the computational resources necessary for this project.
+
+<img width="1544" height="469" alt="superbugai" src="https://github.com/user-attachments/assets/f26d1d49-1ffb-433b-b593-0fc67604a7c1" />
+![alfred](https://github.com/user-attachments/assets/abac6a2a-1b3a-4242-b2f6-2c4820e96bc9)
+<img width="900" height="500" alt="monash" src="https://github.com/user-attachments/assets/befc1ae6-eb52-46b4-a9a9-4507549da95f" />
+![Uploading rmit.png…]()
+
