@@ -39,18 +39,18 @@ bibliography: paper.bib
 # Summary
 
 
-An integrated representation containing patient electronic health record (EHR) data and pathogen genomic information is essential for accurately modelling infectious diseases. To address this need, we present Pathogene-on-FHIR, a comprehensive framework designed to facilitate the development of integrated data representations (refer to Figure 1). The framework supports combining linked EHR and pathogen sequencing data using Fast Healthcare Interoperability Resources (FHIR). In addition, it offers user-friendly, interactive visualisations that enable ad-hoc exploratory analyses. The framework’s export functionality further generates a harmonised data matrix, which can be readily used in multimodal machine learning workflows. To demonstrate the utility of the framework, we generated an integrated representation from the real-world data which was used to model complex dynamics of infections using machine learning.
+To accurately model infectious diseases, it is essential to have an integrated representation that combines patient electronic health record (EHR) data with pathogen genomic information. To address this need, we introduce FHIR-EHR-QC, a comprehensive framework designed to facilitate the development of integrated data representations by leveraging Fast Healthcare Interoperability Resources (FHIR) platform (refer to Figure 1). It also offers user-friendly, interactive visualisations that enable ad-hoc exploratory analyses. The export functionality from the framework generates a harmonised data matrix, which can be readily used in multimodal machine learning workflows. To illustrate its utility, we applied the framework to real-world datasets to construct an integrated representation, which was subsequently employed to model the complex dynamics of infectious diseases using machine learning approaches.
 
 
 ![Schematic representation](images/schematic_representation.png)
 
-Figure 1: A schematic representation of the Pathogene-on-FHIR system, illustrating the various components of the framework, their respective functions, and the interactions between them.
+Figure 1: Schematic overview of the FHIR-EHR-QC system, depicting the components involved in constructing and utilising the integrated representation. Biomedical information including patient records, associated genomic data, and risk scores is mapped into resources for ingestion into the FHIR server. These resources are created using the Forge utility and validated through FHIR Inferno. The integrated representation supports interactive dashboards for exploratory visualisation, while the extraction module enables the generation of a harmonised data matrix for downstream multimodal machine learning applications.
 
 
 # Statement of Need
 
 
-Infectious diseases arise from the invasion and colonisation of the host by pathogenic microorganisms. Their outcome is determined by a complex interplay between virulence capabilities of the pathogens and the host immune responses. Therefore, accurate modelling of infectious disease outcomes requires harmonised, high-resolution datasets that integrate both pathogen-specific genomic characteristics and host-specific responses. For this purpose, FHIR provides a robust platform that includes customisable templates, known as resources, to harmonise diverse biomedical entities such as patient health records and genomic sequencing artifacts. However, current approaches for ingesting data into FHIR demonstrate several limitations (see Table 1), which constrain their applicability for developing integrated representations within the FHIR framework. We developed Pathogene-on-FHIR, a flexible data harmonization utility specifically designed to address the identified shortcomings.
+Infectious diseases arise from the invasion and colonisation of the host by pathogenic microorganisms. Their outcome is determined by a complex interplay between virulence capabilities of the pathogens and the host immune responses. Therefore, accurate modelling of infectious disease outcomes requires harmonised, high-resolution datasets that integrate both pathogen-specific genomic characteristics and host-specific responses. For this purpose, FHIR provides a robust platform that includes customisable templates, known as resources, to harmonise diverse biomedical entities such as patient health records and genomic sequencing artifacts. However, current approaches for ingesting data into FHIR demonstrate several limitations (see Table 1), which constrain their applicability for developing integrated representations within the FHIR framework. We developed FHIR-EHR-QC, a flexible data harmonization utility specifically designed to address the identified shortcomings.
 
 
 | Framework/Tool                                  | FHIR Resources        | Transformations                         | Compatible with Version   | Ingestion from relational EHR |
@@ -63,7 +63,7 @@ Infectious diseases arise from the invasion and colonisation of the host by path
 | Pathogene-on-FHIR                               | All                   | FHIR <-> DB                             | All                       | Yes                           |
 
 
-Table 1: A comparative overview of various tools developed for ingesting data into FHIR. Each tool is evaluated across four key dimensions: the types of FHIR resources supported, the nature of data transformations enabled (e.g., FHIR to database or bidirectional mapping), version compatibility with OMOP-CDM and FHIR standards, and whether the tool supports ingestion of data directly from relational EHR systems. Notably, Pathogene-on-FHIR supports all FHIR resources, and supports all FHIR and OMOP-CDM versions due to its flexible design. It performs the reverse data flow enabling bidirectional transformations. It can also support direct ingestion from relational EHRs—highlighting a current gap in integration workflows.
+Table 1: A comparative overview of various tools developed for ingesting data into FHIR. Each tool is evaluated across four key dimensions: the types of FHIR resources supported, the nature of data transformations enabled (e.g., FHIR to database or bidirectional mapping), version compatibility with OMOP-CDM and FHIR standards, and whether the tool supports ingestion of data directly from relational EHR systems. Notably, FHIR-EHR-QC supports all FHIR resources, and supports all FHIR and OMOP-CDM versions due to its flexible design. It performs the reverse data flow enabling bidirectional transformations. It can also support direct ingestion from relational EHRs—highlighting a current gap in integration workflows.
 
 
 # Implementation
@@ -72,13 +72,13 @@ Table 1: A comparative overview of various tools developed for ingesting data in
 ## The data ingestion and extraction utility
 
 
-This utility, developed in Python (version 3.8), provides a command-line interface. It follows a flexible configurable design allows for easy customisation and extension to adopt to any requirement. The utility uses the AppConfig file to obtain connection details for data hosts, including the FHIR server base URL and relational database server connection credentials. Additionally, by modifying the configuration file named RunConfig, users can build tailored workflows to suit their specific scenario. The file can contain multiple blocks, with each block representing a single module. Modules are executed sequentially in the order they appear in the configuration file, ensuring systematic processing of the entire workflow. The modules available within the Pathogene-on-FHIR framework include:
+This utility, developed in Python (version 3.8), provides a command-line interface. It follows a flexible configurable design that allows for easy customisation and extension to adapt to any requirement. The utility uses the AppConfig file to obtain connection details for data hosts, including the FHIR server base URL and relational database server connection credentials. Additionally, by modifying the configuration file named RunConfig, users can build tailored workflows to suit their specific scenario. The file can contain multiple blocks, with each block representing a single module. Modules are executed sequentially in the order they appear in the configuration file, ensuring systematic processing of the entire workflow. The modules available within the FHIR-EHR-QC framework include:
 
 
 ### Genomics Integration Module
 
 
-This module offers GTF-to-FHIR utility function for ingesting small genomic datasets into FHIR. Additionally, it also offers Genome-to-FHIR for large-scale data, storing only URLs in FHIR to optimise memory. The input can be in a GTF format or a CSV file with genomic annotations. For example, an index file with token locations genomicBERT model [@chen2023genomicbert] was used to ingest selected tokens into FHIR. Essentially, both functions require an index file mapping patient to the corresponding genomic data files. Additionally, they also require a file containing JSON template to generate FHIR resources.
+This module offers GTF-to-FHIR utility function for ingesting small genomic datasets into FHIR. Additionally, it also offers Genome-to-FHIR for large-scale data, storing only URLs in FHIR to optimise memory. The input can be in a GTF format or a CSV file with genomic annotations. For example, an index file with token locations genomicBERT model [@chen2023genomicbert] was used to ingest selected tokens into FHIR. Essentially, both functions require an index file mapping patients to the corresponding genomic data files. Additionally, they also require a file containing JSON template to generate FHIR resources.
 
 
 ### Health records integration Module
@@ -97,6 +97,7 @@ It supports transfer of FHIR data to relational databases using FHIR URL queries
 
 
 Both these utilities support OMOP-CDM by default, custom queries and templates enable support for non-standard schemas.
+
 
 
 ### Auxiliary features designed to streamline and support the construction of a seamless workflow
@@ -120,7 +121,7 @@ A key feature of this module is its ability to incorporate custom code execution
 #### Incremental data loading
 
 
-In addition to the bulk loading, Pathogene-on-FHIR also supports the incremental data loading feature allowing the transfer of only modified data, reducing the data transfer volume. Specifically, incremental loading is achieved through altering the extraction logic such that only the newly inserted or updated information is extracted from the time-stamped data. Essentially, it enables efficient two-way data synchronisation and ensures data consistency across both systems.
+In addition to the bulk loading, FHIR-EHR-QC also supports the incremental data loading feature allowing the transfer of only modified data, reducing the data transfer volume. Specifically, incremental loading is achieved through altering the extraction logic such that only the newly inserted or updated information is extracted from the time-stamped data. Essentially, it enables efficient two-way data synchronisation and ensures data consistency across both systems.
 
 
 #### Harmonised data export
@@ -132,7 +133,7 @@ The export functionality enables users to extract linked data from the FHIR serv
 ## Harnessing integrated data to generate insights
 
 
-In addition to the data ingestion and extraction utility, we developed a web-based application, incorporating functionalities designed to support the effective use of integrated data representations. The application primarily provides data exploration and visualisation, along with additional supporting functionalities (see Figure 2). The search function retrives the data records from a FHIR server based on the user specified criteria. Resulting records can be visualised either individually or at group level. Individual visualisations include the genomic summary plot offering a high-level overview of the genomic information and the detailed plots for much finer granularity. Group-level plots provide visualisations of the integrated data for all records matching the search criteria. These plots are categorised into AMR summary, FASTA summary, and Token summary, each with multiple interactive graphs. The search results can also be exported into flat files for subsequent analysis. The utility also offers interactive dashboards where users can control variables like risk score and admission date in real time to dynamically specify the data used for plotting.
+In addition to the data ingestion and extraction utility, we developed a web-based application, incorporating functionalities designed to support the effective use of integrated data representations. The application primarily provides data exploration and visualisation, along with additional supporting functionalities (see Figure 2). The search function retrieves the data records from a FHIR server based on the user specified criteria. Resulting records can be visualised either individually or at group level. Individual visualisations include the genomic summary plot offering a high-level overview of the genomic information and the detailed plots for much finer granularity. Group-level plots provide visualisations of the integrated data for all records matching the search criteria. These plots are categorised into AMR summary, FASTA summary, and Token summary, each with multiple interactive graphs. The search results can also be exported into flat files for subsequent analysis. The utility also offers interactive dashboards where users can control variables like risk score and admission date in real time to dynamically specify the data used for plotting.
 
 
 ![An overview of the functionalities](images/harnessing_integrated_data.png)
