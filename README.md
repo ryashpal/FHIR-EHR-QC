@@ -19,7 +19,8 @@
 
 ## 🛠 System Architecture
 
-![Schematic Overview](images/schematic_representation.png)
+<img width="849" height="368" alt="schematic_representation" src="https://github.com/user-attachments/assets/de217a06-0b8c-4134-a719-62e7cef91d55" />
+
 
 The framework is composed of two primary components:
 1.  **Ingestion/Extraction Utility**: A Python CLI tool driven by `AppConfig` (connection details) and `RunConfig` (workflow logic).
