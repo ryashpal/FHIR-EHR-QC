@@ -130,8 +130,7 @@ a Creative Commons Attribution 4.0 International License (CC BY
   to model complex dynamics of infections using machine learning.</p>
   <fig>
     <caption><p>Schematic representation</p></caption>
-    <p><named-content content-type="image">Schematic
-    representation</named-content></p>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="schematic_representation.png" />
   </fig>
   <p>Figure 1: A schematic representation of the Pathogene-on-FHIR
   system, illustrating the various components of the framework, their
@@ -367,8 +366,7 @@ a Creative Commons Attribution 4.0 International License (CC BY
     in real time to dynamically specify the data used for plotting.</p>
     <fig>
       <caption><p>An overview of the functionalities</p></caption>
-      <p><named-content content-type="image">An overview of the
-      functionalities</named-content></p>
+      <graphic mimetype="image" mime-subtype="png" xlink:href="harnessing_integrated_data.png" />
     </fig>
     <p>Figure 2: An overview of the functionalities enabled by
     integrated data.</p>
