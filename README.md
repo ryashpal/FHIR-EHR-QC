@@ -80,8 +80,10 @@ We acknowledge the following individuals and organizations for their support:
 
 **Resources**: The ARDC Nectar Research Cloud for providing the computational resources necessary for this project.
 
-<img width="100" alt="superbugai" src="https://github.com/user-attachments/assets/f26d1d49-1ffb-433b-b593-0fc67604a7c1" />
-<img width="100" alt="alfred" src="https://github.com/user-attachments/assets/7e9deedf-992e-4f2e-a3f4-6aa883c85b89" />
-<img width="100" alt="monash" src="https://github.com/user-attachments/assets/befc1ae6-eb52-46b4-a9a9-4507549da95f" />
-<img width="100" alt="rmit" src="https://github.com/user-attachments/assets/d2bfed0b-02b4-4777-a44f-532ac46a9553" />
+<img width="150" alt="monash" src="https://github.com/user-attachments/assets/befc1ae6-eb52-46b4-a9a9-4507549da95f" />
 
+<img width="150" alt="superbugai" src="https://github.com/user-attachments/assets/f26d1d49-1ffb-433b-b593-0fc67604a7c1" />
+
+<img width="150" alt="alfred" src="https://github.com/user-attachments/assets/7e9deedf-992e-4f2e-a3f4-6aa883c85b89" />
+
+<img width="150" alt="rmit" src="https://github.com/user-attachments/assets/d2bfed0b-02b4-4777-a44f-532ac46a9553" />
